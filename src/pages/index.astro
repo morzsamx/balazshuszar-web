@@ -1,7 +1,37 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { getCollection, render } from 'astro:content';
+
+const references = await getCollection('references');
+
+const renderedReferences = await Promise.all(
+  references.map(async (post) => {
+    const { Content } = await render(post);
+
+    return {
+      ...post,
+      Content,
+    };
+  })
+);
 ---
 
 <MainLayout title="Balazs Huszar - Visual Designer">
-	<h1>Coming soon</h1>
+	<h1 class="mb-8">References</h1>
+	<p>Összesen: {renderedReferences.length} bejegyzés</p>
+	{renderedReferences.map(post => (
+		<div class="mb-8">
+			<h2>{post.data.title}</h2>
+			<h3>{post.data.client}</h3>
+			<h3>{post.data.year}{post.data.yearEnd ? '-' + post.data.yearEnd : ''}</h3>
+			{post.data.tools.length > 0 && (
+				<ul class="badges">				
+					{post.data.tools.map(tool =>(
+						<li>{tool}</li>	
+					))}
+				</ul>
+			)}			
+			<post.Content />
+		</div>	
+	))}	
 </MainLayout>

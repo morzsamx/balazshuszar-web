@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import Logo from "../assets/logo.svg";
 const { title } = Astro.props;
 ---
 
@@ -14,14 +15,14 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{ title }</title>
 	</head>
-	<body class="flex flex-col min-h-screen max-w-5xl mx-auto bg-blue-500 text-base text-black sm:pt-8">
+	<body class="flex flex-col min-h-screen max-w-5xl mx-auto bg-linear-to-b from-indigo-500 to-sky-500 text-base text-black sm:pt-8">
 
 		<div class="main-content flex-grow bg-white sm:rounded-4xl p-8 shadow-xl sm:mx-8">		
 		
 			<header class="flex flex-row mb-8">
 				<div class="flex items-center">
-					<div class="flex bg-blue-500 w-[40px] h-[40px] mr-2 rounded-[20px] text-white justify-center items-center">
-						<span class="font-bold text-2xl leading-none">B</span>
+					<div class="flex w-[40px] h-[40px] mr-2 text-indigo-500">
+						<Logo />
 					</div>
 					<div class="text-xl">
 						<span class="font-bold">Balazs</span> Huszar
