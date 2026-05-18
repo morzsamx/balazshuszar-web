@@ -15,7 +15,28 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{ title }</title>
 	</head>
-	<body class="flex flex-col min-h-screen max-w-5xl mx-auto bg-linear-to-b from-(--color-accent) to-cyan-500 text-base text-black sm:pt-8">
+	<body class="flex flex-col min-h-screen max-w-5xl mx-auto bg-linear-to-b from-(--color-accent) to-cyan-500 text-base text-black sm:pt-8 relative">
+		
+		<div id="vanta-wrapper" class="hidden sm:block fixed w-full h-full left-0 top-0 z-[-1] mix-blend-screen opacity-75">
+			<script is:inline src="/vanta/three.min.js"></script>
+			<script is:inline src="/vanta/vanta.net.min.js"></script>
+			<script>
+			VANTA.NET({
+				el: "#vanta-wrapper",
+				mouseControls: false,
+				touchControls: false,
+				gyroControls: false,
+				minHeight: 200.00,
+				minWidth: 200.00,
+				scale: 1.00,
+				scaleMobile: 1.00,
+				color: 0xffffff,
+				backgroundColor: 0x000000,
+				maxDistance: 25.00,
+  				spacing: 20.00
+			})
+			</script>
+		</div>
 
 		<div class="main-content flex-grow bg-white sm:rounded-4xl p-8 shadow-[0_10px_20px_rgba(0,0,0,.15)] sm:mx-8">		
 		
