@@ -1,7 +1,6 @@
 import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { toolKeys } from './lib/tools.ts';
 
 const references = defineCollection({
   loader: glob({ base: './src/references', pattern: '**/*.{md,mdx}' }),
@@ -10,7 +9,14 @@ const references = defineCollection({
     client: z.string(),
     year: z.coerce.number(),
     yearEnd: z.coerce.number().optional(),
-    tools: z.array(z.enum(toolKeys)).default([])
+    description: z.string().optional(),
+    tools: z.array(z.enum([
+      "vray",
+      "3dsmax",
+      "photoshop",
+      "illustrator",
+      "voxedit"
+    ])).default([])
   }),
 });
 

@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+
+const references = await getCollection('references');
+---
+
+<h2 class="mb-8">References</h2>
+{references.map(post => (
+    <div class="flex mb-8">
+        <div class="date w-10">
+            <h3>{post.data.year}{post.data.yearEnd ? '-' + post.data.yearEnd : ''}</h3>
+        </div>
+        <div class="timeline"></div>
+        <div class="details flex-grow">
+            <h2>{post.data.title}</h2>
+            <h3>{post.data.client}</h3>        
+            <h3>{post.data.description}</h3>
+            {post.data.tools.length > 0 && (
+                <ul class="flex my-2">				
+                    {post.data.tools.map(tool =>(
+                        <li class="first:ml-0 mx-2 border-1 px-2 rounded-md border-neutral-300 bg-neutral-100">{tool}</li>	
+                    ))}
+                </ul>
+            )}	
+        </div>		
+    </div>	
+))}	
